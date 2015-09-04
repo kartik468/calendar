@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "amd", 
+        "outDir": "built/js/", 
+        "sourceMap": false, 
+        "target": "es5",
+         "noImplicitAny": false
+    }, 
+    "files": [
+        "ts\\test.ts",
+        "ts\\model\\Validation.ts",
+        "ts\\model\\LettersOnlyValidator.ts",
+        "ts\\model\\ZipCodeValidator.ts",
+        "app.ts"
+    ]
+}
