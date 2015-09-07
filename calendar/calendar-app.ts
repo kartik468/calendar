@@ -6,8 +6,8 @@
 
 
 class CalendarApp extends Marionette.Application {
-    constructor(options?: any) {
-        super(options);
+    constructor(options?) {
+       super(options);
     }
     
     initialize(options) {

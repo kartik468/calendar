@@ -2,12 +2,13 @@
 /// <reference path="../library/underscore/underscore.d.ts"/>
 /// <reference path="../library/backbone/backbone.d.ts"/>
 /// <reference path="../library/backbone.marionette/backbone.marionette.d.ts" />
+/// <reference path="../models/day-model.ts" />
 /// <reference path="../calendar-app.ts"/>
 
 
-class CalendarView extends Marionette.ItemView<CalendarModel>{
+class DayView extends Marionette.ItemView<DayModel>{
 
-	model: CalendarModel;
+	model: DayModel;
 
 	constructor(options) {
 		super(options);
