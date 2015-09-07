@@ -23,15 +23,14 @@ $(document).ready(function() {
     });
 
     marionetteApp.on("start", function() {
-        var calendarModel = new CalendarModel();
-        var calendarView = new CalendarView({
+        var calendarModel: CalendarModel = new CalendarModel();
+        var calendarView: CalendarView = new CalendarView({
             model: calendarModel,
             id: 'calendar-container'
         })
 
-        var regionContainer = new RegionContainer({});
-        regionContainer.main.show(calendarView)
-
+        var regionContainer: RegionContainer = new RegionContainer({});
+        regionContainer.main.show(calendarView)        
     });
     marionetteApp.start();
 });

@@ -6,11 +6,12 @@
 /// <reference path="../calendar-app.ts"/>
 
 
-class DayView extends Marionette.ItemView < DayModel > {
-
-    model: DayModel;
-
+// var MyCollection = Backbone.Collection.extend({
+//     model: MyModel
+// });
+class DayModelCollection extends Backbone.Collection < DayModel > {
     constructor(options) {
         super(options);
     }
+    model = DayModel;
 }

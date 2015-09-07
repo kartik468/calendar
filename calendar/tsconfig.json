@@ -9,6 +9,8 @@
         "calendar-app.ts",
         "main.ts",
         "models/calendar-model.ts",
-        "views/calendar-view.ts"
+        "views/calendar-view.ts",
+        "views/region-container-view.ts",
+        "collections/day-model-collection.ts"
     ]
 }

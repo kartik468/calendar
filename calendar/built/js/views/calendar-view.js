@@ -15,5 +15,22 @@ var CalendarView = (function (_super) {
         _super.call(this, options);
         this.template = '#calendar-template';
     }
+    CalendarView.prototype.onRender = function () {
+        // manipulate the `el` here. it's already
+        // been rendered, and is full of the view's
+        // HTML, ready to go.
+        var dayModelCollection = new DayModelCollection([]);
+        // create collection of days
+        // create 35 day models i.e 5 weeks
+        var dayModel;
+        for (var index = 0; index < 35; index++) {
+            console.log(index);
+            dayModel = new DayModel({
+                notes: []
+            });
+            dayModelCollection.add(dayModel);
+        }
+        debugger;
+    };
     return CalendarView;
 })(Marionette.ItemView);

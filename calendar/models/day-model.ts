@@ -5,18 +5,18 @@
 
 
 interface DayModelInterface {
-    notes:Array<string>[]
+    notes: Array < string > []
 }
 
-class DayModel extends Backbone.Model{
-	// Default attributes for the calendar.
-	defaults(): DayModelInterface {
-		return {
-			notes:[]
-		}
-	}
+class DayModel extends Backbone.Model {
+    // Default attributes for the calendar.
+    defaults(): DayModelInterface {
+        return {
+            notes: []
+        }
+    }
 
-	initialize() {
-		console.log("day initialized");
-	}
+    initialize() {
+        console.log("day initialized");
+    }
 }

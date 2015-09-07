@@ -6,11 +6,11 @@
 
 
 class CalendarApp extends Marionette.Application {
-    constructor(options?) {
-       super(options);
+    constructor(options ? ) {
+        super(options);
     }
-    
+
     initialize(options) {
         console.log('My container:', options.container);
-  	}
+    }
 }

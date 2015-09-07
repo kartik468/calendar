@@ -5,17 +5,32 @@
 /// <reference path="../calendar-app.ts"/>
 
 
-class CalendarView extends Marionette.ItemView<CalendarModel>{
+class CalendarView extends Marionette.ItemView < CalendarModel > {
 
-	model: CalendarModel;
+    model: CalendarModel;
 
-	template: string = '#calendar-template';
+    template: string = '#calendar-template';
 
-	constructor(options) {
-		super(options);
-	}
+    constructor(options) {
+        super(options);
+    }
+
+    onRender() {
+        // manipulate the `el` here. it's already
+        // been rendered, and is full of the view's
+        // HTML, ready to go.
+        var dayModelCollection: DayModelCollection = new DayModelCollection([]);
+        // create collection of days
+
+        // create 35 day models i.e 5 weeks
+        var dayModel: DayModel;
+        for (var index: number = 0; index < 35; index++) {
+            console.log(index);
+            dayModel = new DayModel({
+                notes: []
+            });
+            dayModelCollection.add(dayModel);
+        }
+        debugger
+    }
 }
-
-
-
-
