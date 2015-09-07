@@ -9,12 +9,21 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>My First Bootstrap Page</h1>
-        <p>This is some text.</p>
+    <div id="app">
     </div>
 </body>
-<script data-main="built/js/app" src="library/require/require.js"></script>
+<script type="text/template" id="calendar-template">
+  <p>This is text that was rendered by our Marionette app.</p>
+</script>
 
+
+<script src="library/jquery/jquery-1.10.2.js"></script>
+<script src="library/underscore/underscore.js"></script>
+<script src="library/backbone/backbone.js"></script>
+<script src="library/backbone.marionette/backbone.marionette.js"></script>
+<script src="built/js/calendar-app.js"></script>
+<script type="text/javascript" src="built/js/models/calendar-model.js"></script>
+<script type="text/javascript" src="built/js/views/calendar-view.js"></script>
+<script src="built/js/main.js"></script>
 
 </html>
