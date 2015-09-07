@@ -7,15 +7,7 @@
 /// <reference path="models/calendar-model.ts"/>
 /// <reference path="views/calendar-view.ts"/>
 
-enum WeekDay {
-    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
-};
-enum mL {
-    January, February, March, April, May, June, July, August, September, October, November, December
-};
-enum mS {
-    Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec
-};
+
 
 $(document).ready(function() {
     var marionetteApp = new CalendarApp({
@@ -26,7 +18,8 @@ $(document).ready(function() {
         var calendarModel: CalendarModel = new CalendarModel();
         var calendarView: CalendarView = new CalendarView({
             model: calendarModel,
-            id: 'calendar-container'
+            id: 'calendar-container',
+            tagName: 'table'
         })
 
         var regionContainer: RegionContainer = new RegionContainer({});

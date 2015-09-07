@@ -16,6 +16,10 @@ var CalendarView = (function (_super) {
         this.template = '#calendar-template';
     }
     CalendarView.prototype.onRender = function () {
+        var currentMonthName = this.model.getCurrentMonthName();
+        var currentYear = this.model.getCurrentYear();
+        this.$("#current-month").html(currentMonthName);
+        this.$("#current-year").html(currentYear + "");
         // manipulate the `el` here. it's already
         // been rendered, and is full of the view's
         // HTML, ready to go.

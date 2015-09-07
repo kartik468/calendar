@@ -16,6 +16,12 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
     }
 
     onRender() {
+
+        var currentMonthName: string = this.model.getCurrentMonthName();
+        var currentYear: number = this.model.getCurrentYear();
+        this.$("#current-month").html(currentMonthName);
+        this.$("#current-year").html(currentYear + "");
+
         // manipulate the `el` here. it's already
         // been rendered, and is full of the view's
         // HTML, ready to go.

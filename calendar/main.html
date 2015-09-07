@@ -14,7 +14,17 @@
     </div>
 </body>
 <script type="text/template" id="calendar-template">
-    <p>This is text that was rendered by our Marionette app.</p>
+    <table id="calendar-header-table">
+        <tr>
+            <td>
+                <button id="back-button">Back</button>
+            </td>
+            <td><span id="current-month">Current Month </span> <span id="current-year">Current Year</span></td>
+            <td>
+                <button id="next-button">Next</button>
+            </td>
+        </tr>
+    </table>
 </script>
 <script src="library/jquery/jquery-1.10.2.js"></script>
 <script src="library/underscore/underscore.js"></script>

@@ -10,6 +10,8 @@
         "main.ts",
         "models/calendar-model.ts",
         "views/calendar-view.ts",
+        "views/day-view.ts",
+        "models/day-model.ts",
         "views/region-container-view.ts",
         "collections/day-model-collection.ts"
     ]

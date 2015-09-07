@@ -4,6 +4,16 @@
 /// <reference path="../library/backbone.marionette/backbone.marionette.d.ts" />
 /// <reference path="../calendar-app.ts"/>
 
+enum WeekDay {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+};
+enum MonthFull {
+    January, February, March, April, May, June, July, August, September, October, November, December
+};
+enum MonthSmall {
+    Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec
+};
+
 interface CalendarModelInterface {
     calendarData: Object;
     currentYear: number;
@@ -36,6 +46,8 @@ class CalendarModel extends Backbone.Model {
         this.setCurrentDayNumber(currentDayNumber);
     }
 
+
+    // getters and setters--------------------------------
     getCurrentDayNumber(): number {
         return this.get("currentDayNumber");
     }
@@ -58,6 +70,12 @@ class CalendarModel extends Backbone.Model {
 
     setCurrentMonthNumber(month: number) {
         return this.set("currentMonthNumber", month);
+    }
+
+    //------------ACTUAL METHODS-------------------
+    getCurrentMonthName(): string {
+		var currentMonthNumber: number = this.getCurrentMonthNumber();
+		return MonthFull[currentMonthNumber];		
     }
 
 }
