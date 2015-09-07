@@ -9,6 +9,8 @@ class CalendarView extends Marionette.ItemView<CalendarModel>{
 
 	model: CalendarModel;
 
+	template: string = '#calendar-template';
+
 	constructor(options) {
 		super(options);
 	}
