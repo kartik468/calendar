@@ -17,7 +17,7 @@ var DayView = (function (_super) {
         this.template = '#day-template';
     }
     DayView.prototype.onRender = function () {
-        debugger;
+        // console.log("day render: " + this.model.getDayId());
     };
     return DayView;
 })(Marionette.ItemView);

@@ -16,8 +16,28 @@ var DayModel = (function (_super) {
     // Default attributes for the calendar.
     DayModel.prototype.defaults = function () {
         return {
-            notes: []
+            notes: [],
+            dayId: 0,
+            actualDay: 0
         };
+    };
+    DayModel.prototype.getActualDay = function () {
+        return this.get("actualDay");
+    };
+    DayModel.prototype.setActualDay = function (day) {
+        return this.set("actualDay", day);
+    };
+    DayModel.prototype.getNotes = function () {
+        return this.get("notes");
+    };
+    DayModel.prototype.setNotes = function (notes) {
+        return this.set("notes", notes);
+    };
+    DayModel.prototype.getDayId = function () {
+        return this.get("dayId");
+    };
+    DayModel.prototype.setDayId = function (id) {
+        return this.set("dayId", id);
     };
     DayModel.prototype.initialize = function () {
         // console.log("day initialized");

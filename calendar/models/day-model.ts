@@ -5,15 +5,41 @@
 
 
 interface DayModelInterface {
-    notes: Array < string > []
+    notes: Array < string > [],
+        dayId: number,
+        actualDay: number
 }
 
 class DayModel extends Backbone.Model {
     // Default attributes for the calendar.
     defaults(): DayModelInterface {
         return {
-            notes: []
+            notes: [],
+            dayId: 0,
+            actualDay: 0
         }
+    }
+
+    getActualDay():number{
+        return this.get("actualDay");
+    }
+
+    setActualDay(day:number){
+        return this.set("actualDay", day);
+    }
+
+    getNotes(): string[] {
+        return this.get("notes");
+    }
+    setNotes(notes: string[]) {
+        return this.set("notes", notes);
+    }
+
+    getDayId(): number {
+        return this.get("dayId");
+    }
+    setDayId(id: number) {
+        return this.set("dayId", id);
     }
 
     initialize() {

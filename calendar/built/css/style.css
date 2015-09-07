@@ -10,3 +10,6 @@ form input {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+#calendar-main-table td {
+  width: 50px;
+}

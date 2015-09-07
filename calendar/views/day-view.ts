@@ -17,6 +17,6 @@ class DayView extends Marionette.ItemView < DayModel > {
     }
 
     onRender() {
-    	debugger
+		// console.log("day render: " + this.model.getDayId());
     }
 }

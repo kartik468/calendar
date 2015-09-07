@@ -70,6 +70,7 @@ var CalendarModel = (function (_super) {
     CalendarModel.prototype.initialize = function () {
         console.log("calendar model initialized");
         var currentDate = new Date();
+        this.setCurrentDay(currentDate);
         var currentYear = currentDate.getFullYear();
         this.setCurrentYear(currentYear);
         var currentMonthNumber = currentDate.getMonth();
@@ -83,7 +84,8 @@ var CalendarModel = (function (_super) {
         for (var index = 0; index < 35; index++) {
             // console.log(index);
             dayModel = new DayModel({
-                notes: []
+                notes: [],
+                dayId: index
             });
             dayModelCollection.add(dayModel);
         }
@@ -102,6 +104,12 @@ var CalendarModel = (function (_super) {
     CalendarModel.prototype.setCurrentDayNumber = function (day) {
         return this.set("currentDayNumber", day);
     };
+    CalendarModel.prototype.getCurrentDay = function () {
+        return this.get("currentDay");
+    };
+    CalendarModel.prototype.setCurrentDay = function (day) {
+        return this.set("currentDay", day);
+    };
     CalendarModel.prototype.getCurrentYear = function () {
         return this.get("currentYear");
     };
@@ -118,6 +126,13 @@ var CalendarModel = (function (_super) {
     CalendarModel.prototype.getCurrentMonthName = function () {
         var currentMonthNumber = this.getCurrentMonthNumber();
         return MonthFull[currentMonthNumber];
+    };
+    //Month is 1 based
+    CalendarModel.prototype.daysInMonth = function (month, year) {
+        return new Date(year, month, 0).getDate();
+    };
+    CalendarModel.prototype.getNoOfDays = function () {
+        return this.daysInMonth(this.getCurrentMonthNumber() + 1, this.getCurrentYear());
     };
     return CalendarModel;
 })(Backbone.Model);

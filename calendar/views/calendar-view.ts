@@ -32,24 +32,31 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
         var dayView: DayView;
         var dayViews: any = [];
         for (var index: number = 0; index < dayModelCollection.length;) {
-            console.log("--------");
-            console.log("week no: " + currentWeek);
-            console.log("index: " + index);
+            // console.log("--------");
+            // console.log("week no: " + currentWeek);
+            // console.log("index: " + index);
             var model: DayModel = dayModelCollection.at(index);
             dayView = new DayView({
                 model: model,
-                id : "week-"+currentWeek+"-day-"+index,
-                tagName : "td",
-                template : ""                
+                id: "week-" + currentWeek + "-day-" + index,
+                tagName: "td"
             }).render();
-            
+
             this.$("#week-" + currentWeek).append(dayView.$el);
+            var dayId: number = dayView.model.getDayId();
+            dayView.$("div").html(dayId + "");
 
             index++;
             if (index % 7 === 0) {
                 currentWeek++;
-                console.log("------------------------------------------");
+                // console.log("------------------------------------------");
             }
         }
+        this.refreshView();
+    }
+
+    refreshView() {
+        var noOfDays: number = this.model.getNoOfDays();
+        console.log("no of days in month : " + noOfDays);
     }
 }

@@ -29,23 +29,28 @@ var CalendarView = (function (_super) {
         var dayView;
         var dayViews = [];
         for (var index = 0; index < dayModelCollection.length;) {
-            console.log("--------");
-            console.log("week no: " + currentWeek);
-            console.log("index: " + index);
+            // console.log("--------");
+            // console.log("week no: " + currentWeek);
+            // console.log("index: " + index);
             var model = dayModelCollection.at(index);
             dayView = new DayView({
                 model: model,
                 id: "week-" + currentWeek + "-day-" + index,
-                tagName: "td",
-                template: ""
+                tagName: "td"
             }).render();
             this.$("#week-" + currentWeek).append(dayView.$el);
+            var dayId = dayView.model.getDayId();
+            dayView.$("div").html(dayId + "");
             index++;
             if (index % 7 === 0) {
                 currentWeek++;
-                console.log("------------------------------------------");
             }
         }
+        this.refreshView();
+    };
+    CalendarView.prototype.refreshView = function () {
+        var noOfDays = this.model.getNoOfDays();
+        console.log("no of days in month : " + noOfDays);
     };
     return CalendarView;
 })(Marionette.ItemView);
