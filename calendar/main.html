@@ -13,6 +13,9 @@
         <div id="main-region"></div>
     </div>
 </body>
+<script type="text/template" id="day-template">
+    <div></div>
+</script>
 <script type="text/template" id="calendar-template">
     <table id="calendar-header-table">
         <tr>
@@ -24,6 +27,16 @@
                 <button id="next-button">Next</button>
             </td>
         </tr>
+    </table>
+    <table id="calendar-main-table">
+        <th>
+            <td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Tu</td><td>Fr</td><td>Sa</td>
+        </th>
+        <tr id="week-0"></tr>
+        <tr id="week-1"></tr>
+        <tr id="week-2"></tr>
+        <tr id="week-3"></tr>
+        <tr id="week-4"></tr>
     </table>
 </script>
 <script src="library/jquery/jquery-1.10.2.js"></script>

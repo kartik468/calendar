@@ -15,7 +15,7 @@ $(document).ready(function () {
         var calendarView = new CalendarView({
             model: calendarModel,
             id: 'calendar-container',
-            tagName: 'table'
+            tagName: 'div'
         });
         var regionContainer = new RegionContainer({});
         regionContainer.main.show(calendarView);

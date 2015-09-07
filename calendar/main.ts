@@ -19,7 +19,7 @@ $(document).ready(function() {
         var calendarView: CalendarView = new CalendarView({
             model: calendarModel,
             id: 'calendar-container',
-            tagName: 'table'
+            tagName: 'div'
         })
 
         var regionContainer: RegionContainer = new RegionContainer({});

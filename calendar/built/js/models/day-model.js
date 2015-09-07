@@ -20,7 +20,7 @@ var DayModel = (function (_super) {
         };
     };
     DayModel.prototype.initialize = function () {
-        console.log("day initialized");
+        // console.log("day initialized");
     };
     return DayModel;
 })(Backbone.Model);

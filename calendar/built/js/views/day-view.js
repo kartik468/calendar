@@ -14,6 +14,10 @@ var DayView = (function (_super) {
     __extends(DayView, _super);
     function DayView(options) {
         _super.call(this, options);
+        this.template = '#day-template';
     }
+    DayView.prototype.onRender = function () {
+        debugger;
+    };
     return DayView;
 })(Marionette.ItemView);

@@ -19,6 +19,7 @@ interface CalendarModelInterface {
     currentYear: number;
     currentMonthNumber: number;
     currentDayNumber: number;
+    dayModelCollection: any;
 }
 
 class CalendarModel extends Backbone.Model {
@@ -28,7 +29,8 @@ class CalendarModel extends Backbone.Model {
             calendarData: {},
             currentYear: 0,
             currentMonthNumber: 0,
-            currentDayNumber: 0
+            currentDayNumber: 0,
+            dayModelCollection: null
         }
     }
 
@@ -44,10 +46,33 @@ class CalendarModel extends Backbone.Model {
 
         var currentDayNumber: number = currentDate.getDay();
         this.setCurrentDayNumber(currentDayNumber);
+
+        // create collection of days
+        var dayModelCollection: DayModelCollection = new DayModelCollection([]);
+
+        // create 35 day models i.e 5 weeks
+        var dayModel: DayModel;
+        for (var index: number = 0; index < 35; index++) {
+            // console.log(index);
+            dayModel = new DayModel({
+                notes: []
+            });
+            dayModelCollection.add(dayModel);
+        }
+
+        this.setDayModelCollection(dayModelCollection);
     }
 
 
     // getters and setters--------------------------------
+    getDayModelCollection(): Object {
+        return this.get("dayModelCollection");
+    }
+
+    setDayModelCollection(collection: Object) {
+        return this.set("dayModelCollection", collection);
+    }
+
     getCurrentDayNumber(): number {
         return this.get("currentDayNumber");
     }
@@ -74,8 +99,8 @@ class CalendarModel extends Backbone.Model {
 
     //------------ACTUAL METHODS-------------------
     getCurrentMonthName(): string {
-		var currentMonthNumber: number = this.getCurrentMonthNumber();
-		return MonthFull[currentMonthNumber];		
+        var currentMonthNumber: number = this.getCurrentMonthNumber();
+        return MonthFull[currentMonthNumber];
     }
 
 }

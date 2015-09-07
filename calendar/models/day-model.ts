@@ -17,6 +17,6 @@ class DayModel extends Backbone.Model {
     }
 
     initialize() {
-        console.log("day initialized");
+        // console.log("day initialized");
     }
 }

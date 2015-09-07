@@ -13,5 +13,6 @@ class DayModelCollection extends Backbone.Collection < DayModel > {
     constructor(options) {
         super(options);
     }
+    length: number;
     model = DayModel;
 }

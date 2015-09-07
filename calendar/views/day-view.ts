@@ -10,7 +10,13 @@ class DayView extends Marionette.ItemView < DayModel > {
 
     model: DayModel;
 
+    template: string = '#day-template';
+
     constructor(options) {
         super(options);
+    }
+
+    onRender() {
+    	debugger
     }
 }

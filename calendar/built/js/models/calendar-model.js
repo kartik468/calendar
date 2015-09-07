@@ -63,7 +63,8 @@ var CalendarModel = (function (_super) {
             calendarData: {},
             currentYear: 0,
             currentMonthNumber: 0,
-            currentDayNumber: 0
+            currentDayNumber: 0,
+            dayModelCollection: null
         };
     };
     CalendarModel.prototype.initialize = function () {
@@ -75,8 +76,26 @@ var CalendarModel = (function (_super) {
         this.setCurrentMonthNumber(currentMonthNumber);
         var currentDayNumber = currentDate.getDay();
         this.setCurrentDayNumber(currentDayNumber);
+        // create collection of days
+        var dayModelCollection = new DayModelCollection([]);
+        // create 35 day models i.e 5 weeks
+        var dayModel;
+        for (var index = 0; index < 35; index++) {
+            // console.log(index);
+            dayModel = new DayModel({
+                notes: []
+            });
+            dayModelCollection.add(dayModel);
+        }
+        this.setDayModelCollection(dayModelCollection);
     };
     // getters and setters--------------------------------
+    CalendarModel.prototype.getDayModelCollection = function () {
+        return this.get("dayModelCollection");
+    };
+    CalendarModel.prototype.setDayModelCollection = function (collection) {
+        return this.set("dayModelCollection", collection);
+    };
     CalendarModel.prototype.getCurrentDayNumber = function () {
         return this.get("currentDayNumber");
     };
