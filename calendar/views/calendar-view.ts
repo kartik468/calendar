@@ -75,24 +75,38 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
 
 
         var currentDay: Date = this.model.getCurrentDay();
-        var firstDayNumber: number = new Date(currentDay.getFullYear(),currentDay.getMonth()).getDay();
+        var firstDayNumber: number = new Date(currentDay.getFullYear(), currentDay.getMonth()).getDay();
         var noOfDays: number = this.model.getNoOfDays();
         var dayModelCollection: DayModelCollection = this.model.getDayModelCollection();
         var tempDayModel: DayModel;
         console.log("no of days in month : " + noOfDays);
 
         //
-        for (var index: number = 0; index < 42 ; index++) {
+        for (var index: number = 0; index < 42; index++) {
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(0);
-        }        
-
+        }
+        var previousMonthDays = this.model.getPreviousMonthDays();
         var actualDay: number = 1;
-        for (var index: number = firstDayNumber; index < firstDayNumber + noOfDays; index++) {
-            console.log(index);
+        var tempDayCount: number = 1;
+        var previousMonthStartCount = previousMonthDays - firstDayNumber + 1;
+        for (var index: number = 0; index < 42; index++) {
+            if (index < firstDayNumber) {
+                console.log(index);
+                tempDayModel = dayModelCollection.at(index);
+                tempDayModel.setActualDay(previousMonthStartCount);
+                previousMonthStartCount++;
+                continue;
+            }
+            if (index > firstDayNumber + noOfDays) {
+                console.log(index);
+                tempDayModel = dayModelCollection.at(index);
+                tempDayModel.setActualDay(tempDayCount);
+                tempDayCount++;
+                continue;
+            }
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
-
             actualDay++;
         }
     }
@@ -101,14 +115,14 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
         this.refreshView();
     }
 
-    onNextButtonClick(){
+    onNextButtonClick() {
         console.log("next button clicked ...");
         this.model.addMonths(1);
         this.model.onCurrentDayChange();
         this.refreshView();
     }
 
-    onBackButtonClick(){
+    onBackButtonClick() {
         console.log("back button clicked ...");
         this.model.addMonths(-1);
         this.model.onCurrentDayChange();

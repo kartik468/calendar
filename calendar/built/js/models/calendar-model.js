@@ -167,5 +167,15 @@ var CalendarModel = (function (_super) {
         return this;
     };
     ;
+    CalendarModel.prototype.getPreviousMonthDays = function () {
+        var dayObject = this.getCurrentDay();
+        dayObject = new Date(dayObject.getFullYear(), dayObject.getMonth(), 1);
+        var n = dayObject.getDate();
+        dayObject.setDate(1);
+        dayObject.setMonth(dayObject.getMonth() - 1);
+        dayObject.setDate(Math.min(n, this.daysInMonth(dayObject.getMonth(), dayObject.getFullYear())));
+        var noOfDays = this.daysInMonth(dayObject.getMonth(), dayObject.getFullYear());
+        return noOfDays;
+    };
     return CalendarModel;
 })(Backbone.Model);

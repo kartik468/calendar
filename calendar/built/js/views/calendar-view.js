@@ -73,9 +73,25 @@ var CalendarView = (function (_super) {
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(0);
         }
+        var previousMonthDays = this.model.getPreviousMonthDays();
         var actualDay = 1;
-        for (var index = firstDayNumber; index < firstDayNumber + noOfDays; index++) {
-            console.log(index);
+        var tempDayCount = 1;
+        var previousMonthStartCount = previousMonthDays - firstDayNumber + 1;
+        for (var index = 0; index < 42; index++) {
+            if (index < firstDayNumber) {
+                console.log(index);
+                tempDayModel = dayModelCollection.at(index);
+                tempDayModel.setActualDay(previousMonthStartCount);
+                previousMonthStartCount++;
+                continue;
+            }
+            if (index > firstDayNumber + noOfDays) {
+                console.log(index);
+                tempDayModel = dayModelCollection.at(index);
+                tempDayModel.setActualDay(tempDayCount);
+                tempDayCount++;
+                continue;
+            }
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
             actualDay++;

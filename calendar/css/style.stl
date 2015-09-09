@@ -13,6 +13,22 @@ form input
   border: 1px solid
   border-radius: 5px
   
+#calendar-container
+  text-align: center
+  
 #calendar-main-table
 	td 
 		width: 50px
+
+#calendar-container
+  width: 50%
+  
+#calendar-container 
+  table
+    width: 100%
+    
+#calendar-header-table
+  #back-button-container
+    text-align: left
+  #next-button-container
+    text-align: right  
