@@ -67,15 +67,28 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
     }
 
     refreshView() {
+
+        var currentMonthName: string = this.model.getCurrentMonthName();
+        var currentYear: number = this.model.getCurrentYear();
+        this.$("#current-month").html(currentMonthName);
+        this.$("#current-year").html(currentYear + "");
+
+
         var currentDay: Date = this.model.getCurrentDay();
-        var currentDayNumber: number = currentDay.getDay();
+        var firstDayNumber: number = new Date(currentDay.getFullYear(),currentDay.getMonth()).getDay();
         var noOfDays: number = this.model.getNoOfDays();
         var dayModelCollection: DayModelCollection = this.model.getDayModelCollection();
         var tempDayModel: DayModel;
-        var actualDay: number = 1;
         console.log("no of days in month : " + noOfDays);
 
-        for (var index: number = currentDayNumber; index < currentDayNumber + noOfDays; index++) {
+        //
+        for (var index: number = 0; index < 42 ; index++) {
+            tempDayModel = dayModelCollection.at(index);
+            tempDayModel.setActualDay(0);
+        }        
+
+        var actualDay: number = 1;
+        for (var index: number = firstDayNumber; index < firstDayNumber + noOfDays; index++) {
             console.log(index);
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
@@ -90,11 +103,15 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
 
     onNextButtonClick(){
         console.log("next button clicked ...");
-        debugger
+        this.model.addMonths(1);
+        this.model.onCurrentDayChange();
+        this.refreshView();
     }
 
     onBackButtonClick(){
         console.log("back button clicked ...");
-        debugger
+        this.model.addMonths(-1);
+        this.model.onCurrentDayChange();
+        this.refreshView();
     }
 }

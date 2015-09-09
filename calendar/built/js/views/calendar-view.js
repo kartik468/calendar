@@ -58,14 +58,23 @@ var CalendarView = (function (_super) {
         this.refreshView();
     };
     CalendarView.prototype.refreshView = function () {
+        var currentMonthName = this.model.getCurrentMonthName();
+        var currentYear = this.model.getCurrentYear();
+        this.$("#current-month").html(currentMonthName);
+        this.$("#current-year").html(currentYear + "");
         var currentDay = this.model.getCurrentDay();
-        var currentDayNumber = currentDay.getDay();
+        var firstDayNumber = new Date(currentDay.getFullYear(), currentDay.getMonth()).getDay();
         var noOfDays = this.model.getNoOfDays();
         var dayModelCollection = this.model.getDayModelCollection();
         var tempDayModel;
-        var actualDay = 1;
         console.log("no of days in month : " + noOfDays);
-        for (var index = currentDayNumber; index < currentDayNumber + noOfDays; index++) {
+        //
+        for (var index = 0; index < 42; index++) {
+            tempDayModel = dayModelCollection.at(index);
+            tempDayModel.setActualDay(0);
+        }
+        var actualDay = 1;
+        for (var index = firstDayNumber; index < firstDayNumber + noOfDays; index++) {
             console.log(index);
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
@@ -77,11 +86,15 @@ var CalendarView = (function (_super) {
     };
     CalendarView.prototype.onNextButtonClick = function () {
         console.log("next button clicked ...");
-        debugger;
+        this.model.addMonths(1);
+        this.model.onCurrentDayChange();
+        this.refreshView();
     };
     CalendarView.prototype.onBackButtonClick = function () {
         console.log("back button clicked ...");
-        debugger;
+        this.model.addMonths(-1);
+        this.model.onCurrentDayChange();
+        this.refreshView();
     };
     return CalendarView;
 })(Marionette.ItemView);

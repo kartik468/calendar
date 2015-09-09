@@ -66,6 +66,17 @@ class CalendarModel extends Backbone.Model {
         }
 
         this.setDayModelCollection(dayModelCollection);
+        this.listenTo(this, "change:currentDay", this.onCurrentDayChange);
+    }
+
+    onCurrentDayChange() {
+        var currentDate: Date = this.getCurrentDay();        
+
+        var currentYear: number = currentDate.getFullYear();
+        this.setCurrentYear(currentYear);
+
+        var currentMonthNumber: number = currentDate.getMonth();
+        this.setCurrentMonthNumber(currentMonthNumber);
     }
 
 
@@ -152,7 +163,7 @@ class CalendarModel extends Backbone.Model {
         var n = dayObject.getDate();
         dayObject.setDate(1);
         dayObject.setMonth(dayObject.getMonth() + value);
-        dayObject.setDate(Math.min(n, this.getDaysInMonth(dayObject.getFullYear(), dayObject.getMonth())));
+        dayObject.setDate(Math.min(n, this.daysInMonth( dayObject.getMonth(),dayObject.getFullYear())));
         return this;
     };
 

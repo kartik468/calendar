@@ -91,6 +91,14 @@ var CalendarModel = (function (_super) {
             dayModelCollection.add(dayModel);
         }
         this.setDayModelCollection(dayModelCollection);
+        this.listenTo(this, "change:currentDay", this.onCurrentDayChange);
+    };
+    CalendarModel.prototype.onCurrentDayChange = function () {
+        var currentDate = this.getCurrentDay();
+        var currentYear = currentDate.getFullYear();
+        this.setCurrentYear(currentYear);
+        var currentMonthNumber = currentDate.getMonth();
+        this.setCurrentMonthNumber(currentMonthNumber);
     };
     // getters and setters--------------------------------
     CalendarModel.prototype.getDayModelCollection = function () {
@@ -155,7 +163,7 @@ var CalendarModel = (function (_super) {
         var n = dayObject.getDate();
         dayObject.setDate(1);
         dayObject.setMonth(dayObject.getMonth() + value);
-        dayObject.setDate(Math.min(n, this.getDaysInMonth(dayObject.getFullYear(), dayObject.getMonth())));
+        dayObject.setDate(Math.min(n, this.daysInMonth(dayObject.getMonth(), dayObject.getFullYear())));
         return this;
     };
     ;
