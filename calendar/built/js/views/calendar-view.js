@@ -16,6 +16,15 @@ var CalendarView = (function (_super) {
         _super.call(this, options);
         this.template = '#calendar-template';
     }
+    CalendarView.prototype.events = function () {
+        return {
+            "click #next-button": "onNextButtonClick",
+            "click #back-button": "onBackButtonClick"
+        };
+    };
+    CalendarView.prototype.onBeforeRender = function () {
+        this.listenTo(this.model, "change:currentDay", this.onCurrentDayChange);
+    };
     CalendarView.prototype.onRender = function () {
         var currentMonthName = this.model.getCurrentMonthName();
         var currentYear = this.model.getCurrentYear();
@@ -39,7 +48,7 @@ var CalendarView = (function (_super) {
                 tagName: "td"
             }).render();
             this.$("#week-" + currentWeek).append(dayView.$el);
-            var dayId = dayView.model.getDayId();
+            var dayId = dayView.model.getActualDay();
             dayView.$("div").html(dayId + "");
             index++;
             if (index % 7 === 0) {
@@ -49,8 +58,30 @@ var CalendarView = (function (_super) {
         this.refreshView();
     };
     CalendarView.prototype.refreshView = function () {
+        var currentDay = this.model.getCurrentDay();
+        var currentDayNumber = currentDay.getDay();
         var noOfDays = this.model.getNoOfDays();
+        var dayModelCollection = this.model.getDayModelCollection();
+        var tempDayModel;
+        var actualDay = 1;
         console.log("no of days in month : " + noOfDays);
+        for (var index = currentDayNumber; index < currentDayNumber + noOfDays; index++) {
+            console.log(index);
+            tempDayModel = dayModelCollection.at(index);
+            tempDayModel.setActualDay(actualDay);
+            actualDay++;
+        }
+    };
+    CalendarView.prototype.onCurrentDayChange = function (model, currentDay) {
+        this.refreshView();
+    };
+    CalendarView.prototype.onNextButtonClick = function () {
+        console.log("next button clicked ...");
+        debugger;
+    };
+    CalendarView.prototype.onBackButtonClick = function () {
+        console.log("back button clicked ...");
+        debugger;
     };
     return CalendarView;
 })(Marionette.ItemView);

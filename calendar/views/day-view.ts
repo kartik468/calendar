@@ -16,7 +16,16 @@ class DayView extends Marionette.ItemView < DayModel > {
         super(options);
     }
 
+
+    onBeforeRender() {
+        this.listenTo(this.model, "change:actualDay", this.updateCurrentDay);
+    }
+
     onRender() {
-		// console.log("day render: " + this.model.getDayId());
+        // console.log("day render: " + this.model.getDayId());
+    }
+
+    updateCurrentDay(model, actualDay) {
+        this.$(".day-number-text").html("" + actualDay);
     }
 }

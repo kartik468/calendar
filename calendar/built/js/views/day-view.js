@@ -16,8 +16,14 @@ var DayView = (function (_super) {
         _super.call(this, options);
         this.template = '#day-template';
     }
+    DayView.prototype.onBeforeRender = function () {
+        this.listenTo(this.model, "change:actualDay", this.updateCurrentDay);
+    };
     DayView.prototype.onRender = function () {
         // console.log("day render: " + this.model.getDayId());
+    };
+    DayView.prototype.updateCurrentDay = function (model, actualDay) {
+        this.$(".day-number-text").html("" + actualDay);
     };
     return DayView;
 })(Marionette.ItemView);

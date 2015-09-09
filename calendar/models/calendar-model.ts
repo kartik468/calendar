@@ -20,6 +20,7 @@ interface CalendarModelInterface {
     currentMonthNumber: number;
     currentDayNumber: number;
     dayModelCollection: any;
+    currentDay: Date;
 }
 
 class CalendarModel extends Backbone.Model {
@@ -30,7 +31,8 @@ class CalendarModel extends Backbone.Model {
             currentYear: 0,
             currentMonthNumber: 0,
             currentDayNumber: 0,
-            dayModelCollection: null
+            dayModelCollection: null,
+            currentDay: null
         }
     }
 
@@ -52,9 +54,9 @@ class CalendarModel extends Backbone.Model {
         // create collection of days
         var dayModelCollection: DayModelCollection = new DayModelCollection([]);
 
-        // create 35 day models i.e 5 weeks
+        // create 42 day models i.e 5 weeks
         var dayModel: DayModel;
-        for (var index: number = 0; index < 35; index++) {
+        for (var index: number = 0; index < 42; index++) {
             // console.log(index);
             dayModel = new DayModel({
                 notes: [],
@@ -68,7 +70,7 @@ class CalendarModel extends Backbone.Model {
 
 
     // getters and setters--------------------------------
-    getDayModelCollection(): Object {
+    getDayModelCollection(): DayModelCollection {
         return this.get("dayModelCollection");
     }
 
@@ -121,7 +123,37 @@ class CalendarModel extends Backbone.Model {
     }
 
     getNoOfDays(): number {
-        return this.daysInMonth(this.getCurrentMonthNumber()+ 1, this.getCurrentYear() );
+        return this.daysInMonth(this.getCurrentMonthNumber() + 1, this.getCurrentYear());
     }
+
+
+
+    // isLeapYear (year) {
+    //     return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
+    // };
+
+    // getDaysInMonth (year, month) {
+    //     var dayObject = this.getCurrentDay();
+    //     return [31, (this.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+    // };
+
+    // isLeapYear () {
+    //     var dayObject = this.getCurrentDay();
+    //     return this.isLeapYear(dayObject.getFullYear());
+    // };
+
+    // getDaysInMonth () {
+    //     var dayObject = this.getCurrentDay();
+    //     return this.getDaysInMonth(dayObject.getFullYear(), dayObject.getMonth());
+    // };
+
+    addMonths (value) {
+        var dayObject = this.getCurrentDay();
+        var n = dayObject.getDate();
+        dayObject.setDate(1);
+        dayObject.setMonth(dayObject.getMonth() + value);
+        dayObject.setDate(Math.min(n, this.getDaysInMonth(dayObject.getFullYear(), dayObject.getMonth())));
+        return this;
+    };
 
 }
