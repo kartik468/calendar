@@ -113,6 +113,7 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
             }
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
+            tempDayModel.setState("active");
             actualDay++;
         }
     }

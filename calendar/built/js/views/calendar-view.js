@@ -100,6 +100,7 @@ var CalendarView = (function (_super) {
             }
             tempDayModel = dayModelCollection.at(index);
             tempDayModel.setActualDay(actualDay);
+            tempDayModel.setState("active");
             actualDay++;
         }
     };
