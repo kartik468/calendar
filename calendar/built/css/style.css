@@ -13,8 +13,20 @@ form input {
 #calendar-container {
   text-align: center;
 }
-#calendar-main-table td {
-  width: 50px;
+#calendar-main-table .day-indicator {
+  color: #f00;
+  font-weight: bold;
+}
+#calendar-main-table .day.active {
+  color: #000;
+  font-weight: bold;
+}
+#calendar-main-table .day.active:hover {
+  outline: 1px solid #f00;
+  cursor: pointer;
+}
+#calendar-main-table .day.disabled {
+  color: #c7c4c4;
 }
 #calendar-container {
   width: 50%;

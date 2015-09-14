@@ -45,7 +45,10 @@ var CalendarView = (function (_super) {
             var model = dayModelCollection.at(index);
             dayView = new DayView({
                 model: model,
-                id: "week-" + currentWeek + "-day-" + index,
+                attributes: {
+                    id: "week-" + currentWeek + "-day-" + index,
+                    class: "active day",
+                },
                 tagName: "td"
             }).render();
             this.$("#week-" + currentWeek).append(dayView.$el);
@@ -83,6 +86,7 @@ var CalendarView = (function (_super) {
                 console.log(index);
                 tempDayModel = dayModelCollection.at(index);
                 tempDayModel.setActualDay(previousMonthStartCount);
+                tempDayModel.setState("disabled");
                 previousMonthStartCount++;
                 continue;
             }
@@ -90,6 +94,7 @@ var CalendarView = (function (_super) {
                 console.log(index);
                 tempDayModel = dayModelCollection.at(index);
                 tempDayModel.setActualDay(tempDayCount);
+                tempDayModel.setState("disabled");
                 tempDayCount++;
                 continue;
             }

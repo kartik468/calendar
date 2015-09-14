@@ -50,7 +50,10 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
             var model: DayModel = dayModelCollection.at(index);
             dayView = new DayView({
                 model: model,
-                id: "week-" + currentWeek + "-day-" + index,
+                attributes: {
+                    id: "week-" + currentWeek + "-day-" + index,
+                    class: "active day",
+                },
                 tagName: "td"
             }).render();
 
@@ -85,7 +88,7 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
         //
         for (var index: number = 0; index < 42; index++) {
             tempDayModel = dayModelCollection.at(index);
-            tempDayModel.setActualDay(0);
+            tempDayModel.setActualDay(0);            
         }
         var previousMonthDays = this.model.getPreviousMonthDays();
         var actualDay: number = 1;
@@ -96,6 +99,7 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
                 console.log(index);
                 tempDayModel = dayModelCollection.at(index);
                 tempDayModel.setActualDay(previousMonthStartCount);
+                tempDayModel.setState("disabled");
                 previousMonthStartCount++;
                 continue;
             }
@@ -103,6 +107,7 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
                 console.log(index);
                 tempDayModel = dayModelCollection.at(index);
                 tempDayModel.setActualDay(tempDayCount);
+                tempDayModel.setState("disabled");
                 tempDayCount++;
                 continue;
             }

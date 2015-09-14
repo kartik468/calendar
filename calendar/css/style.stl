@@ -17,8 +17,17 @@ form input
   text-align: center
   
 #calendar-main-table
-	td 
-		width: 50px
+  .day-indicator
+    color red
+    font-weight bold    
+  .day.active
+    color black
+    font-weight bold  
+  .day.active:hover
+    outline 1px solid red
+    cursor pointer
+  .day.disabled
+    color #C7C4C4  
 
 #calendar-container
   width: 50%

@@ -7,7 +7,8 @@
 interface DayModelInterface {
     notes: Array < string > [],
         dayId: number,
-        actualDay: number
+        actualDay: number,
+        state: string
 }
 
 class DayModel extends Backbone.Model {
@@ -16,15 +17,24 @@ class DayModel extends Backbone.Model {
         return {
             notes: [],
             dayId: 0,
-            actualDay: 0
+            actualDay: 0,
+            state: "active"
         }
     }
 
-    getActualDay():number{
+    getState(): string {
+        return this.get("state");
+    }
+
+    setState(state: string) {
+        return this.set("state", state);
+    }
+
+    getActualDay(): number {
         return this.get("actualDay");
     }
 
-    setActualDay(day:number){
+    setActualDay(day: number) {
         return this.set("actualDay", day);
     }
 

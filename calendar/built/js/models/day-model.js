@@ -18,8 +18,15 @@ var DayModel = (function (_super) {
         return {
             notes: [],
             dayId: 0,
-            actualDay: 0
+            actualDay: 0,
+            state: "active"
         };
+    };
+    DayModel.prototype.getState = function () {
+        return this.get("state");
+    };
+    DayModel.prototype.setState = function (state) {
+        return this.set("state", state);
     };
     DayModel.prototype.getActualDay = function () {
         return this.get("actualDay");
