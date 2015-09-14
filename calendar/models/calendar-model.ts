@@ -169,12 +169,12 @@ class CalendarModel extends Backbone.Model {
 
     getPreviousMonthDays() {
         var dayObject: Date = this.getCurrentDay();
-        dayObject = new Date(dayObject.getFullYear(), dayObject.getMonth(), 1);
-        var n = dayObject.getDate();
-        dayObject.setDate(1);
-        dayObject.setMonth(dayObject.getMonth() - 1);
-        dayObject.setDate(Math.min(n, this.daysInMonth(dayObject.getMonth(), dayObject.getFullYear())));
-        var noOfDays = this.daysInMonth(dayObject.getMonth(), dayObject.getFullYear());
+        var tempDayObject: Date = new Date(dayObject.getFullYear(), dayObject.getMonth(), 1);
+        var n = tempDayObject.getDate();
+        tempDayObject.setDate(1);
+        tempDayObject.setMonth(tempDayObject.getMonth() - 1);
+        tempDayObject.setDate(Math.min(n, this.daysInMonth(tempDayObject.getMonth() + 1, tempDayObject.getFullYear())));
+        var noOfDays = this.daysInMonth(tempDayObject.getMonth() + 1, tempDayObject.getFullYear());
         return noOfDays;
     }
 
