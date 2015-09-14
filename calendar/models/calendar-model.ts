@@ -81,6 +81,15 @@ class CalendarModel extends Backbone.Model {
 
 
     // getters and setters--------------------------------
+
+    getCalendarData(): Object {
+        return this.get("calendarData");
+    }
+
+    setCalendarData(data: Object) {
+        return this.set("calendarData", data);
+    }
+
     getDayModelCollection(): DayModelCollection {
         return this.get("dayModelCollection");
     }

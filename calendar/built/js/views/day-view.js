@@ -26,6 +26,7 @@ var DayView = (function (_super) {
         if (state === "active") {
             this.model.setSelected(true);
         }
+        this.trigger("showAddNote", this);
     };
     DayView.prototype.onBeforeRender = function () {
         this.listenTo(this.model, "change:actualDay", this.updateCurrentDay);

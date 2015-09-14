@@ -4,6 +4,7 @@
 /// <reference path="../library/backbone.marionette/backbone.marionette.d.ts" />
 /// <reference path="../collections/day-model-collection.ts" />
 /// <reference path="../views/day-view.ts" />
+/// <reference path="../views/day-notes-view.ts" />
 /// <reference path="../calendar-app.ts"/>
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -58,8 +59,29 @@ var CalendarView = (function (_super) {
             if (index % 7 === 0) {
                 currentWeek++;
             }
+            dayView.on("showAddNote", this.onAddNote, this);
         }
+        this.createDayNotesView();
         this.refreshView();
+    };
+    CalendarView.prototype.createDayNotesView = function () {
+        this.dayNotesView = new DayNotesView({
+            attributes: {
+                id: "day-notes-container",
+            },
+            tagName: "div"
+        });
+        this.dayNotesView.render();
+        this.$el.append(this.dayNotesView.$el);
+        this.dayNotesView.on("dataChange", this.updateData, this);
+    };
+    CalendarView.prototype.updateData = function (changedView) {
+        debugger;
+    };
+    CalendarView.prototype.onAddNote = function (dayView) {
+        this.dayNotesView.model = dayView.model;
+        this.dayNotesView.$el.show();
+        this.dayNotesView.initializeView();
     };
     CalendarView.prototype.refreshView = function () {
         var currentMonthName = this.model.getCurrentMonthName();

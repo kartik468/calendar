@@ -43,3 +43,10 @@ form input {
 #calendar-header-table #next-button-container {
   text-align: right;
 }
+#day-notes-container {
+  position: absolute;
+  display: none;
+}
+.single-note {
+  text-align: left;
+}

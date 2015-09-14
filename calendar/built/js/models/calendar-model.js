@@ -101,6 +101,12 @@ var CalendarModel = (function (_super) {
         this.setCurrentMonthNumber(currentMonthNumber);
     };
     // getters and setters--------------------------------
+    CalendarModel.prototype.getCalendarData = function () {
+        return this.get("calendarData");
+    };
+    CalendarModel.prototype.setCalendarData = function (data) {
+        return this.set("calendarData", data);
+    };
     CalendarModel.prototype.getDayModelCollection = function () {
         return this.get("dayModelCollection");
     };

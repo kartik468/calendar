@@ -4,6 +4,7 @@
 /// <reference path="../library/backbone.marionette/backbone.marionette.d.ts" />
 /// <reference path="../collections/day-model-collection.ts" />
 /// <reference path="../views/day-view.ts" />
+/// <reference path="../views/day-notes-view.ts" />
 /// <reference path="../calendar-app.ts"/>
 
 
@@ -66,12 +67,37 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
                 currentWeek++;
                 // console.log("------------------------------------------");
             }
+            dayView.on("showAddNote", this.onAddNote, this);
         }
+        this.createDayNotesView();
         this.refreshView();
     }
 
-    refreshView() {
+    dayNotesView: DayNotesView;
 
+    createDayNotesView() {
+        this.dayNotesView = new DayNotesView({
+            attributes: {
+                id: "day-notes-container",
+            },
+            tagName: "div"
+        });
+        this.dayNotesView.render();
+        this.$el.append(this.dayNotesView.$el);
+        this.dayNotesView.on("dataChange", this.updateData, this);
+    }
+
+    updateData(changedView){
+        debugger
+    }
+
+    onAddNote(dayView: DayView) {
+        this.dayNotesView.model = dayView.model;
+        this.dayNotesView.$el.show();
+        this.dayNotesView.initializeView();
+    }
+
+    refreshView() {
         var currentMonthName: string = this.model.getCurrentMonthName();
         var currentYear: number = this.model.getCurrentYear();
         this.$("#current-month").html(currentMonthName);
@@ -88,7 +114,7 @@ class CalendarView extends Marionette.ItemView < CalendarModel > {
         //
         for (var index: number = 0; index < 42; index++) {
             tempDayModel = dayModelCollection.at(index);
-            tempDayModel.setActualDay(0);            
+            tempDayModel.setActualDay(0);
         }
         var previousMonthDays = this.model.getPreviousMonthDays();
         var actualDay: number = 1;

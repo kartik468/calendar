@@ -26,6 +26,7 @@ class DayView extends Marionette.ItemView < DayModel > {
         if (state === "active") {
             this.model.setSelected(true);
         }
+        this.trigger("showAddNote", this);
     }
 
     onBeforeRender() {

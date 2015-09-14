@@ -11,8 +11,15 @@
 <body>
     <div id="app-container">
         <div id="main-region"></div>
-    </div>
+    </div>    
 </body>
+
+
+<script type="text/template" id="day-note-template">
+    Enter note: <input id="enter-note" type="text"/>   
+    <div id="note-list-container"></div> 
+</script>
+
 <script type="text/template" id="day-template">
     <div class="day-number-text">1</div>
 </script>
@@ -22,10 +29,8 @@
             <td id="back-button-container">
                 <button id="back-button">Back</button>
             </td>
-            <td><span id="current-month">Current Month </span> <span id="current-year">Current Year</span></td>
-            <td id="next-button-container">
-                <button id="next-button">Next</button>
-            </td>
+            <td><span id="current-month">Current Month </span> <span id="current-year">Current Year</span></td>            
+            <td><button id="next-button">Next</button></td>
         </tr>
     </table>
     <table id="calendar-main-table">
@@ -53,6 +58,7 @@
 <script src="built/js/calendar-app.js"></script>
 <script type="text/javascript" src="built/js/views/region-container-view.js"></script>
 <script type="text/javascript" src="built/js/models/day-model.js"></script>
+<script type="text/javascript" src="built/js/views/day-notes-view.js"></script>
 <script type="text/javascript" src="built/js/views/day-view.js"></script>
 <script type="text/javascript" src="built/js/collections/day-model-collection.js"></script>
 <script type="text/javascript" src="built/js/models/calendar-model.js"></script>
