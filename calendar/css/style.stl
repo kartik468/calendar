@@ -27,7 +27,9 @@ form input
     outline 1px solid red
     cursor pointer
   .day.disabled
-    color #C7C4C4  
+    color #C7C4C4
+  .day.selected
+    background-color gray
 
 #calendar-container
   width: 50%

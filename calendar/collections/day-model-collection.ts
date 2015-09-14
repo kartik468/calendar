@@ -13,6 +13,27 @@ class DayModelCollection extends Backbone.Collection < DayModel > {
     constructor(options) {
         super(options);
     }
+
+    initialize() {
+        this.on("change:selected", this.onSelectionChange);
+    }
+
+    onSelectionChange(model) {
+        if (model.getSelected() === false) {
+            return;
+        }
+        var selectedDays: Array < DayModel > = this.where({
+            "selected": true
+        });
+        selectedDays.forEach(function(day) {
+            if (day === model) {
+                return
+            }
+            day.setSelected(false);
+        });
+
+    }
+
     length: number;
     model = DayModel;
 }

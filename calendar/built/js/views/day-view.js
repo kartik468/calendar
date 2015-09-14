@@ -24,12 +24,21 @@ var DayView = (function (_super) {
     DayView.prototype.onViewClick = function () {
         var state = this.model.getState();
         if (state === "active") {
-            debugger;
+            this.model.setSelected(true);
         }
     };
     DayView.prototype.onBeforeRender = function () {
         this.listenTo(this.model, "change:actualDay", this.updateCurrentDay);
         this.listenTo(this.model, "change:state", this.onStateChange);
+        this.listenTo(this.model, "change:selected", this.onSelectionChange);
+    };
+    DayView.prototype.onSelectionChange = function (model, selected) {
+        if (selected === true) {
+            this.$el.addClass("selected");
+        }
+        else {
+            this.$el.removeClass("selected");
+        }
     };
     DayView.prototype.onStateChange = function (model, state) {
         if (state === "active") {

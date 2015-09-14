@@ -23,14 +23,24 @@ class DayView extends Marionette.ItemView < DayModel > {
     }
     onViewClick() {
         var state: string = this.model.getState();
-        if(state === "active"){
-            debugger
+        if (state === "active") {
+            this.model.setSelected(true);
         }
     }
 
     onBeforeRender() {
         this.listenTo(this.model, "change:actualDay", this.updateCurrentDay);
         this.listenTo(this.model, "change:state", this.onStateChange);
+        this.listenTo(this.model, "change:selected", this.onSelectionChange);
+    }
+
+    onSelectionChange(model, selected) {
+        if (selected === true) {
+            this.$el.addClass("selected");
+        } else {
+            this.$el.removeClass("selected");
+        }
+
     }
 
     onStateChange(model, state) {

@@ -19,8 +19,15 @@ var DayModel = (function (_super) {
             notes: [],
             dayId: 0,
             actualDay: 0,
-            state: "active"
+            state: "active",
+            selected: false
         };
+    };
+    DayModel.prototype.getSelected = function () {
+        return this.get("selected");
+    };
+    DayModel.prototype.setSelected = function (selected) {
+        return this.set("selected", selected);
     };
     DayModel.prototype.getState = function () {
         return this.get("state");

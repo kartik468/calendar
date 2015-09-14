@@ -28,6 +28,9 @@ form input {
 #calendar-main-table .day.disabled {
   color: #c7c4c4;
 }
+#calendar-main-table .day.selected {
+  background-color: #808080;
+}
 #calendar-container {
   width: 50%;
 }

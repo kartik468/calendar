@@ -19,5 +19,22 @@ var DayModelCollection = (function (_super) {
         _super.call(this, options);
         this.model = DayModel;
     }
+    DayModelCollection.prototype.initialize = function () {
+        this.on("change:selected", this.onSelectionChange);
+    };
+    DayModelCollection.prototype.onSelectionChange = function (model) {
+        if (model.getSelected() === false) {
+            return;
+        }
+        var selectedDays = this.where({
+            "selected": true
+        });
+        selectedDays.forEach(function (day) {
+            if (day === model) {
+                return;
+            }
+            day.setSelected(false);
+        });
+    };
     return DayModelCollection;
 })(Backbone.Collection);

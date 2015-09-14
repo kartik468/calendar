@@ -8,7 +8,8 @@ interface DayModelInterface {
     notes: Array < string > [],
         dayId: number,
         actualDay: number,
-        state: string
+        state: string,
+        selected: boolean
 }
 
 class DayModel extends Backbone.Model {
@@ -18,8 +19,17 @@ class DayModel extends Backbone.Model {
             notes: [],
             dayId: 0,
             actualDay: 0,
-            state: "active"
+            state: "active",
+            selected: false
         }
+    }
+
+    getSelected(): boolean {
+        return this.get("selected");
+    }
+
+    setSelected(selected: boolean) {
+        return this.set("selected", selected);
     }
 
     getState(): string {
